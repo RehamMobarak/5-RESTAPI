@@ -66,6 +66,9 @@ class ItemsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //* When testing: remember to add _method : put or patch in postman OR
+        //* change method to PUT | PATCH in request itself
+
         $validator = Validator::make($request->all(), [
             "text" => 'required',
             "body" => 'required'
@@ -79,7 +82,7 @@ class ItemsController extends Controller
         $item->text = $request->input("text");
         $item->body = $request->input("body");
         $item->save();
-        
+
 
         return response()->json($item);
     }
@@ -92,6 +95,9 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::find($id);
+        $item->delete();
+
+        return ["response" => "Item deleted", "success" => true];
     }
 }
