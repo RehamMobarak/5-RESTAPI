@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use Illuminate\Http\Request;
 
-class itemController extends Controller
+class ItemsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class itemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::get();
+        return response()->json($items);
     }
 
     /**
