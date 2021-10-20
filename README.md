@@ -1,61 +1,69 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Simple Api tutorial
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+First make sure that composer,git,php are installed and working properly 
 
-## About Laravel
+To Clone/download repository to your local machine, run command:
+$ git clone https://github.com/RehamMobarak/5-RESTAPI.git
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Go to the folder containing the project ( for Ubuntu use cd PROJECTPATH)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Run composer install on your cmd or terminal to download the required packages for the projects to run.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Open your .env file and change the database name (DB_DATABASE) to whatever you have, username (DB_USERNAME) and password (DB_PASSWORD) field correspond to your configuration.
+    By default, the username is root and you can leave the password field empty. (This is for Xampp)
+    By default, the username is root and password is also root. (This is for Lamp)
 
-## Learning Laravel
+Run php artisan key:generate
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Run php artisan migrate
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+To run the project:
+    Run php artisan serve
 
-## Laravel Sponsors
+    Go to localhost:8000
+OR:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+make a virtual host on your machine to run the project using a url
+For ubuntu:
+    (1) go to /etc/apache2/sites-available folder.
 
-### Premium Partners
+(2) Copy 000-default.conf file or create a new file at that location with the name of the domain you want, i.e., test.site.conf -- itemapi.stg.conf.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+(3) put that code with changes according to the project name and location:
 
-## Contributing
+<VirtualHost *:80>
+    ServerAdmin admin@domain.com
+    ServerName itemapi.stg  //custom 
+    ServerAlias itemapi.stg //custom
+<Directory project-path>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+    DocumentRoot project-path/public
+    ErrorLog project-path/error.log
+    CustomLog project-path/access.log combined
+</VirtualHost>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+(4) Now you need to tell apache that this conf file ready to be served, so you need to run this command:
+sudo a2ensite test.site.conf
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+sudo service apache2 restart
 
-## Security Vulnerabilities
+(5) to solve permission problem make sure there is no VPN running and you may need to run these commands:
+sudo a2enmod rewrite
+sudo service apache2 restart
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-- if not working got to project and run:
+php artisan config:clear
+php artisan cache:clear
+sudo chmod -R 775 project-path (proj loaction)
+sudo chown -R www-data:www-data project-path (proj loaction)
 
-## License
+(6) to register the new DNS, go /etc/hosts file and put an IP and DonmainName:
+127.0.0.1  itemapi.stg
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+restart apache sudo service apache2 restart
+and test it!
+
