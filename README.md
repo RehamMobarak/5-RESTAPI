@@ -26,7 +26,8 @@ OR:
 
 make a virtual host on your machine to run the project using a url
 For ubuntu:
-    (1) go to /etc/apache2/sites-available folder.
+
+(1) go to /etc/apache2/sites-available folder.
 
 (2) Copy 000-default.conf file or create a new file at that location with the name of the domain you want, i.e., test.site.conf -- itemapi.stg.conf.
 
