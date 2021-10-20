@@ -3,6 +3,7 @@ Simple Api tutorial
 First make sure that composer,git,php are installed and working properly 
 
 To Clone/download repository to your local machine, run command:
+
 $ git clone https://github.com/RehamMobarak/5-RESTAPI.git
 
 Go to the folder containing the project ( for Ubuntu use cd PROJECTPATH)
