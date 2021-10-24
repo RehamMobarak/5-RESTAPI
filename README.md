@@ -27,6 +27,7 @@ OR:
 make a virtual host on your machine to run the project using a url
 
 #For ubuntu:
+----------------------
 
 (1) go to /etc/apache2/sites-available folder.
 
@@ -69,11 +70,14 @@ sudo chown -R www-data:www-data project-path (proj loaction)
 
 restart apache sudo service apache2 restart
 and test it!
-----------------------
+
+
+
 #For windows
+----------------------
 1. C:\xampp\apache\conf\httpd.conf remove the # next to Include conf/extra/httpd-vhosts.conf “ we tell apache to use the vhost file which we will add our vhost to it” from # Virtual hosts
 #Include conf/extra/httpd-vhosts.conf TO
-# Virtual hosts
+ (# Virtual hosts)
 Include conf/extra/httpd-vhosts.conf
 
 2. C:\xampp\apache\conf\extra\httpd-vhosts.conf “ we will add our custom vhost” notice: we add -/public- because the entry point for our app is index.php inside this folder.
