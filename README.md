@@ -25,7 +25,8 @@ To run the project:
 OR:
 
 make a virtual host on your machine to run the project using a url
-For ubuntu:
+
+#For ubuntu:
 
 (1) go to /etc/apache2/sites-available folder.
 
@@ -68,4 +69,25 @@ sudo chown -R www-data:www-data project-path (proj loaction)
 
 restart apache sudo service apache2 restart
 and test it!
+----------------------
+#For windows
+1. C:\xampp\apache\conf\httpd.conf remove the # next to Include conf/extra/httpd-vhosts.conf “ we tell apache to use the vhost file which we will add our vhost to it” from # Virtual hosts
+#Include conf/extra/httpd-vhosts.conf TO
+# Virtual hosts
+Include conf/extra/httpd-vhosts.conf
+
+2. C:\xampp\apache\conf\extra\httpd-vhosts.conf “ we will add our custom vhost” notice: we add -/public- because the entry point for our app is index.php inside this folder.
+
+3. Run Notepad as admin from win search open C:\Windows\System32\drivers\etc\hosts select All files* to see it. at the very bottom add the ip name for the vhost 127.0.0.1 itemapi.stg
+
+4. Restart apache services from xampp
+<VirtualHost *:80>
+ServerAdmin webmaster@localhost.com
+DocumentRoot "C:/xampp/htdocs/5-RESTAPI/public"
+ServerName itemapi.stg
+<Directory "C:/xampp/htdocs/5-RESTAPI/public">
+Order allow,deny
+Allow from all
+</Directory>
+</VirtualHost>
 
